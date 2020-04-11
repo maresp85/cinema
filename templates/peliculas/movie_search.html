@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container mt-3">
+
+    {% if object_list.count == 0 %}
+      <div class="alert alert-secondary mt-2" role="alert">
+        No hay resultados para la búsqueda: <b>"{{ search }}"</b>
+      </div>
+    {% endif %}
+
+    {% for movie in object_list %}
+      <div class="alert alert-primary mt-2" role="alert">
+        Monstrando {{ object_list.count }} resultado, para la búsqueda: <b>"{{ search }}"</b>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="../../media/{{ movie.urlimage }}" class="card-img-top">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.name }}</h5>
+          <p class="card-text"></p>
+          <p class="card-text" style="font-size: 10pt;text-align:center">
+            {{ movie.runtime }} min | {{ movie.rating }}
+          </p>
+          <a href="#" class="btn btn-primary">Ver Horarios</a>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+{% endblock  %}

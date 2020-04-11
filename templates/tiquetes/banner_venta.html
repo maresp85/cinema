@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="container">
+  <div class="row" style="padding:10px;margin-bottom:2pt;background-color:#f3f3f3">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <h6>COMPRA TUS ENTRADAS ONLINE</h6>
+        </div>
+      </div>
+
+      <form action="{% url 'peliculas:compraboletasonline' %}" method="post">
+        {% csrf_token %}
+        <div class="row mt-2">
+          <div class="col-2">
+            <select name="date" id="date" class="form-control" required>
+                <option value="" selected="">Fecha</option>
+                {% for date in dates %}
+                    <option value="{{ date.date|date:'Y-m-d' }}">{{ date.date }}</option>
+                {% endfor %}
+              </select>
+          </div>
+          <div class="col-2">
+            <select name="movie" id="movie" class="form-control" required>
+                <option value="" disabled selected>Películas</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <select name="hour" id="hour" class="form-control" required>
+                <option value="" selected="">Hora</option>
+                {% for hour in hours %}
+                    <option value="{{ hour.id }}">{{ hour.hour }}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-danger btn-block">
+              <i class="fa fa-cart-plus" aria-hidden="true"></i>
+              <span class="ml-1">Comprar</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  </div>
+</div>

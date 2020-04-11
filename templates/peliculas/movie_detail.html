@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container mt-3">
+
+    <h2>{{ object.name }}</h2>
+
+    <div class="row text-center" style="background-color:black">
+        <div class="col align-self-center" style="padding:10px">
+          <iframe width="480" height="340" frameborder="0"
+            src="{{ object.videointro }} ">
+          </iframe>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+      <div class="col-4">
+        <img class="img-responsive" src="../../../media/{{ object.urlimage }}" width="50%">
+      </div>
+      <div class="col-4">
+        <table>
+          <tbody>
+            <tr>
+              <th>Titulo Original:</th>
+              <td>{{ object.name }}</td>
+            </tr>
+            <tr>
+              <th>Fecha de Estreno:</th>
+              <td>{{ object.release_date }}</td>
+            </tr>
+            <tr>
+              <th>Director:</th>
+              <td>{{ object.director }}</td>
+            </tr>
+            <tr>
+              <th>Duración:</th>
+              <td>{{ object.runtime }}</td>
+            </tr>
+            <tr>
+              <th>Resumen:</th>
+              <td>{{ object.synopsis }}</td>
+            </tr>
+            <tr>
+              <th>Reparto:</th>
+              <td>
+                {% for cast in object.cast.all %}
+                  {{ cast.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+{% endblock  %}

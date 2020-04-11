@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <img src="{% static 'images/banner.jpg' %}" class="img-fluid" title="Banner principal" />
+  </div>
+
+  <div class="container mt-3">
+    <h4>CARTELERA SEMANAL</h4>
+    <hr>
+    <div class="card-columns">
+
+      {% for movie in movies %}
+        <div class="card">
+
+          <div class="hovereffect">
+              <img class="card-img-top" src="../../media/{{ movie.urlimage }}">
+              <div class="overlay">
+                 <h2>{{ movie.name }}</h2>
+                 <a class="info" href="{% url 'peliculas:detalle' movie.id %}">Ver Más</a>
+              </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.name }}</h5>
+            <p class="card-text"></p>
+            <p class="card-text text-center">
+              <small class="text-muted ">{{ movie.runtime }} min | {{ movie.rating }}</small>
+            </p>
+            <a href="#" class="btn btn-primary btn-block">Ver Horarios</a>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock  %}

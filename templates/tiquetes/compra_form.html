@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container mt-3">
+
+    {% if movie != 0 %}
+      <h6>COMPRA DE ENTRADAS</h6>
+      <div class="row mt-1">
+        <div class="col-4">
+          <div class="row">
+            <p>{{ movie.name }}</p>
+          </div>
+          <div class="row">
+            <span class="badge badge-warning">{{ movie.rating }}</span>
+            <span class="badge badge-secondary ml-1">{{ movie.runtime }}</span>
+          </div>
+          <div class="row mt-2">
+            <img class="img-responsive" src="../../../media/{{ movie.urlimage }}" width="50%">
+          </div>
+        </div>
+        <div class="col-8">
+          {% if user.is_authenticated %}
+            <form method="post">
+              <div class="row">
+                {% csrf_token %}
+                <div class="col-6">
+                  <input type="number" class="form-control" name="seats" required>
+                </div>
+                <div class="col-6">
+                  <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+                </div>                
+              </div>
+            </form>
+          {% else %}
+            <div class="row">
+              <div class="col-12 text-center">
+                <h5>Estimado Usuario, para efectuar el proceso de compra, debe iniciar sesión</h5>
+                <a href="{% url 'login' %}" class="btn btn-danger">Iniciar Sesión</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      <div class="row mt-5">
+        <div class="col-12 mt-5 mb-5">
+          <div class="alert alert-danger mt-5 mb-5">
+            <strong>Error!</strong> Realice las compras desde la página principal
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+{% endblock  %}

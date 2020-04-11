@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container mt-3">
+
+    <div class="card-columns">
+
+      {% for data in object_list %}
+        <div class="card">
+          <img class="card-img-top" src="../../media/{{ data.urlimage }}" title="{{ data.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ data.name }}</h5>
+            <p class="card-text"></p>
+            <p class="card-text">
+              <small class="text-muted">{{ data.address }}, {{ data.city.name }}</small>
+            </p>
+            <a href="#" class="btn btn-primary btn-block">Ver Cartelera</a>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock  %}
