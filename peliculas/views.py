@@ -47,7 +47,7 @@ class MoviesList(ListView):
 #Crear Películar
 class MoviesCreate(CreateView):
     model = Movie
-    success_url = reverse_lazy('pelicular:listar')
+    success_url = reverse_lazy('pelicula:listar')
     fields = '__all__'
 
 #Detalle de película
